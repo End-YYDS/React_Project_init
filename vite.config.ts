@@ -11,7 +11,7 @@ export default defineConfig({
   },
   build: {
     lib: {
-      entry: resolve(__dirname, 'src/index.tsx'),
+      entry: resolve(__dirname, 'src/App.tsx'),
       name: process.env.LIB_NAME || 'MyLibrary',
       fileName: process.env.LIB_NAME || 'MyLibrary',
       formats: ['es'],
