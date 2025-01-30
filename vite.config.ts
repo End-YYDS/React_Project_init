@@ -1,6 +1,6 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
-import path from 'path';
+import { resolve } from 'path';
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -9,12 +9,30 @@ export default defineConfig({
   server: {
     host: '0.0.0.0',
   },
+  build: {
+    lib: {
+      entry: resolve(__dirname, 'src/index.tsx'),
+      name: process.env.LIB_NAME || 'MyLibrary',
+      fileName: process.env.LIB_NAME || 'MyLibrary',
+      formats: ['es'],
+    },
+    rollupOptions: {
+      external: ['react', 'react-dom'],
+      output: {
+        globals: {
+          react: 'React',
+          'react-dom': 'ReactDOM',
+        },
+      },
+    },
+    copyPublicDir: false,
+  },
   resolve: {
     alias: {
-      '@site': path.resolve(__dirname, 'src'),
-      '@components': path.resolve(__dirname, 'src/Components'),
-      '@assets': path.resolve(__dirname, 'src/Assets'),
-      '@constants': path.resolve(__dirname, 'src/Constants'),
+      '@site': resolve(__dirname, 'src'),
+      '@components': resolve(__dirname, 'src/Components'),
+      '@assets': resolve(__dirname, 'src/Assets'),
+      '@constants': resolve(__dirname, 'src/Constants'),
     },
   },
 });

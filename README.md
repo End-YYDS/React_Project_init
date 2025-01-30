@@ -1,3 +1,1 @@
-# React + TypeScript + Vite
-
-## 請自行Fork專案之後開始創作
+# CHM 插件前端框架
