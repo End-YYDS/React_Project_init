@@ -1,31 +1,41 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import { resolve } from 'path';
-
+import federation from '@originjs/vite-plugin-federation';
+const exposeName = process.env.LIB_NAME || 'RemoteEntry';
+const getExposes = () => {
+  return {
+    [`./${exposeName}`]: './src/App.tsx',
+  };
+};
 // https://vite.dev/config/
 export default defineConfig({
-  plugins: [react()],
-  base: './',
-  server: {
-    host: '0.0.0.0',
-  },
+  plugins: [
+    react(),
+    federation({
+      name: process.env.LIB_NAME || 'plugin',
+      filename: 'RemoteEntry.js',
+      exposes: getExposes(),
+      shared: ['react', 'react-dom', 'tailwindcss'],
+    }),
+  ],
   build: {
-    lib: {
-      entry: resolve(__dirname, 'src/App.tsx'),
-      name: process.env.LIB_NAME || 'MyLibrary',
-      fileName: process.env.LIB_NAME || 'MyLibrary',
-      formats: ['es'],
-    },
+    target: 'esnext',
+    outDir: 'dist',
+    assetsDir: 'assets',
+    cssCodeSplit: false,
+    emptyOutDir: true,
     rollupOptions: {
-      external: ['react', 'react-dom'],
+      // input: [], // 不生成 index.html
       output: {
-        globals: {
-          react: 'React',
-          'react-dom': 'ReactDOM',
+        assetFileNames: (assetInfo) => {
+          if (assetInfo.names && assetInfo.names[0].endsWith('.css')) {
+            return 'assets/[name].[ext]';
+          }
+          return 'assets/[name]-[hash].[ext]';
         },
       },
     },
-    copyPublicDir: false,
   },
   resolve: {
     alias: {

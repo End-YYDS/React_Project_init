@@ -1,5 +1,5 @@
+import { HelloWorld } from './Components';
 const App = () => {
-  return <div>helloWorld</div>;
+  return <HelloWorld />;
 };
-
 export default App;
