@@ -1,8 +1,9 @@
-import { defineConfig } from 'vite';
+import { defineConfig, loadEnv } from 'vite';
 import react from '@vitejs/plugin-react';
 import { resolve } from 'path';
 import federation from '@originjs/vite-plugin-federation';
-const exposeName = process.env.LIB_NAME || 'RemoteEntry';
+const env = loadEnv(process.env.NODE_ENV || 'development', process.cwd(), '');
+const exposeName = env.VITE_LIB_NAME;
 const getExposes = () => {
   return {
     [`./${exposeName}`]: './src/App.tsx',
@@ -13,8 +14,8 @@ export default defineConfig({
   plugins: [
     react(),
     federation({
-      name: process.env.LIB_NAME || 'plugin',
-      filename: 'RemoteEntry.js',
+      name: `${exposeName}`,
+      filename: `${exposeName}.js`,
       exposes: getExposes(),
       shared: ['react', 'react-dom', 'tailwindcss'],
     }),
