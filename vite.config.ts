@@ -26,7 +26,30 @@ export default defineConfig({
     assetsDir: 'assets',
     cssCodeSplit: false,
     emptyOutDir: true,
+    chunkSizeWarningLimit: 2500,
     rollupOptions: {
+      onwarn(warning, defaultHandler) {
+        if (
+          warning.message.includes('Module "fs" has been externalized') ||
+          warning.message.includes('Module "path" has been externalized') ||
+          warning.message.includes('Module "os" has been externalized') ||
+          warning.message.includes('Module "crypto" has been externalized') ||
+          warning.message.includes('Module "util" has been externalized') ||
+          warning.message.includes('Module "stream" has been externalized') ||
+          warning.message.includes('Module "url" has been externalized') ||
+          warning.message.includes('Module "assert" has been externalized') ||
+          warning.message.includes('Module "module" has been externalized') ||
+          warning.message.includes('Module "process" has been externalized') ||
+          warning.message.includes('Module "tty" has been externalized') ||
+          warning.message.includes('Module "v8" has been externalized') ||
+          warning.message.includes('Module "events" has been externalized') ||
+          warning.message.includes('Module "perf_hooks" has been externalized') ||
+          warning.message.includes('Module "vm" has been externalized')
+        ) {
+          return;
+        }
+        defaultHandler(warning);
+      },
       // input: [], // 不生成 index.html
       output: {
         assetFileNames: (assetInfo) => {
