@@ -22,7 +22,7 @@ export default defineConfig({
   ],
   build: {
     target: 'esnext',
-    outDir: 'dist',
+    outDir: 'frontend',
     assetsDir: 'assets',
     cssCodeSplit: false,
     emptyOutDir: true,
