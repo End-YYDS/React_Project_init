@@ -6,7 +6,7 @@ const env = loadEnv(process.env.NODE_ENV || 'development', process.cwd(), '');
 const exposeName = env.VITE_LIB_NAME;
 const getExposes = () => {
   return {
-    [`./${exposeName}`]: './src/App.tsx',
+    [`${exposeName}`]: './src/App.tsx',
   };
 };
 // https://vite.dev/config/
