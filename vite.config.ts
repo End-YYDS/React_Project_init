@@ -18,8 +18,9 @@ function injectInfoAfterBuild(): Plugin {
             outDir = resolvedConfig.build.outDir;
         },
         generateBundle(_, bundle) {
+            let _name = name + ".js";
             for (const [fileName] of Object.entries(bundle)) {
-                if (fileName.endsWith(".js") && fileName.includes(name)) {
+                if (fileName.endsWith(".js") && fileName === _name) {
                     finalJS = fileName;
                 }
                 if (fileName.endsWith(".css")) {

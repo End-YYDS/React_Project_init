@@ -9,7 +9,7 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "postbuild": "rm -rf out && mkdir -p out && cd dist && zip -r ../out/react-project-init.zip . && cd .. && rm -rf dist"
+    "postbuild": "node scripts/postbuild.js"
   },
   "dependencies": {
     "@module-federation/vite": "^1.2.6",
@@ -31,9 +31,11 @@
     "@types/react": "^19.0.10",
     "@types/react-dom": "^19.0.4",
     "@vitejs/plugin-react": "^4.3.4",
+    "archiver": "^7.0.1",
     "eslint": "^9.21.0",
     "eslint-plugin-react-hooks": "^5.1.0",
     "eslint-plugin-react-refresh": "^0.4.19",
+    "fs-extra": "^11.3.0",
     "globals": "^15.15.0",
     "typescript": "~5.7.2",
     "typescript-eslint": "^8.24.1",
