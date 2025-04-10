@@ -8,10 +8,10 @@ RegisterFunction = registerFunction
 RegisterPlugin({
     name = "react-project-init",
     description = "A CHM Plugin template with Vite, React,Tailwind CSS, shadcn/ui, and ESLint.",
-    version = "0.0.1",
+    version = "0.0.0",
     uiConfig = {
         mainFile = "react-project-init.js",
-        cssFile = "assets/App-BRd_-_3c.css",
+        cssFile = "assets/App-Bc_1Bdok.css",
         exportName = "./App"
     }
 })

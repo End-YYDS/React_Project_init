@@ -2,8 +2,10 @@ import { name } from "./package.json";
 const federationExposes = {
     "./App": "./src/App.tsx",
 };
-let backend = process.env.backend || "http://localhost:8080/static/plugins";
-backend = backend.endsWith("/") ? backend : `${backend}/`;
-backend = backend.endsWith(name) ? backend : `${backend}${name}/`;
+let host = process.env.backend || "http://localhost:8080";
+host = host.endsWith("/") ? host : `${host}/`;
+let base = host + "static/plugins/";
+let backend = base + `${name}/`;
+let api = host + `api/plugin/${name}/`;
 
-export { federationExposes, backend };
+export { federationExposes, backend, api };
