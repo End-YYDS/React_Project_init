@@ -10,8 +10,8 @@ RegisterPlugin({
     description = "A CHM Plugin template with Vite, React,Tailwind CSS, shadcn/ui, and ESLint.",
     version = "0.0.0",
     uiConfig = {
-        mainFile = "react-project-init.js",
-        cssFile = "assets/App-Bc_1Bdok.css",
+        mainFile = "",
+        cssFile = "",
         exportName = "./App"
     }
 })

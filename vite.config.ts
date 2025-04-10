@@ -93,6 +93,9 @@ export default defineConfig({
         emptyOutDir: true,
         outDir: "dist",
     },
+    define: {
+        "process.env": {},
+    },
     server: {
         host: "localhost",
         port: 5174,
