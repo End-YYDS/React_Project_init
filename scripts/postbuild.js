@@ -22,7 +22,7 @@ async function run() {
     archive.pipe(output);
     archive.directory(distDir, false);
     await archive.finalize();
-    fs.unlinkSync(distDir);
+    fs.rmSync(distDir, { recursive: true, force: true });
 
     console.log(`Created: ${zipPath}`);
 }
